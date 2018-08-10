@@ -1,22 +1,35 @@
 # PUBG-Discord-Bot
 
 # How to use:
-- Download this repo or just pubg.py and import it into your bot if you already have one.
-- Download [Discord.py](https://github.com/Rapptz/discord.py)
-- [Make a discord app and check the bot account.](https://discordapp.com/developers/applications/me)
-- [Get a Discord code to use a bot and add it to your server.](https://discordapp.com/developers/docs/topics/oauth2#bots)
-- There are plenty of tutorials on how to set one up on YouTube, but basically you can use [this](https://discordapi.com/permissions.html#0) to create the link needed to add the bot to your server. 
-- Put your code in this line: `bot.run('TOKEN')`
-- Use Pip to install BeautifulSoup: `pip install bs4`
-- Edit default values in pubg.py if you want. Current Default: `mode='squad-fpp', region='na'`
-- If everything goes well, it will connect and you can call it using `!stats {playername}` with any valid filters.
+- Put the cog in the [Basic Cog Bot](https://github.com/stroupbslayen/Basic-Cog-Bot) cog folder.
 
-![example](https://i.imgur.com/9RFZpKT.png)
+- Use Pip to install BeautifulSoup: `pip install bs4`
+
+- Edit default values in pubg.py if you want. Current Default: `mode='squad-fpp', region='na'`
+
+- If everything goes well, it will connect and you can call it using `pubgstats {playername}` with any valid filters.
+
+![example](https://i.imgur.com/GutJn6j.png)
 
 # What's new:
-- Remade using the [pubg.op.gg](https://pubg.op.gg/) API since the PUBG Tracker API has been down for a while.
-- Better use of async
-- Basic bot setup for cogs for easy additions.
+- Rebuilt for discord.py rewrite
+
+- Seasons are automatically updated
+
+- Tiers and tier badges are output
+- Now only a single cog
+- Made to just drop into the [Basic Cog Bot](https://github.com/stroupbslayen/Basic-Cog-Bot)
+- Users can register their in game names with `pubg_register {in-game-name}` this will register them to the servers 'team' and they can look themselves up without entering their name in the `pubgstats` command. Stats are also retrieved faster.
+
+![registered](https://i.imgur.com/6HEVhVm.png)
+
+- Team member stats can be group retrieved with `pubgstats team`
+
+![team](https://i.imgur.com/Npko2zk.png)
+
+- New command: `pubgleaderboard` will show you how people on your team stack up against eachother. Leaderboards are sorted by average damage/round.
+
+![leaderboard](https://i.imgur.com/ocTJW6m.png)
 
 # Features:
 - Can do multiple players at one time.
@@ -29,4 +42,4 @@
 - Should correct most errors and at least output something.
 
 # Issues:
-- If your name is one of the game modes, or regions this won't work for you.
+- If your name is one of the game modes, *team*, or regions this won't work for you.
