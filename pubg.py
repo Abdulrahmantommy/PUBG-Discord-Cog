@@ -102,9 +102,12 @@ class pubg():
         playerid = pID['data-user_id']
         nickname = pID['data-user_nickname']
         # get line with current season
+        # season = page.find(
+        #     'a', {'class': 'game-server__btn game-server__btn--on'})
+        # season = season['data-started-at'][:-18]
         season = page.find(
-            'a', {'class': 'game-server__btn game-server__btn--on'})
-        season = season['data-started-at'][:-18]
+            'button', {'id': 'selectSeason'})
+        season = season['data-status']
         return {'playerid': playerid, 'season': season, 'nickname': nickname}
 
     @commands.command()
@@ -189,7 +192,7 @@ class pubg():
             tier = player_stats.get('tier').get('title')
             embed = discord.Embed(title=data['nickname'], url=f'https://pubg.op.gg/user/{data.get("nickname")}?server={data.get("region")}',
                                   description=f'{region}-{mode}\nGrade: **{grade}**\nAVG DMG: **{avg_dmg}**\nTier: **{tier}**', color=0x00ff00)
-            embed.add_field(name="Rank", value=player_stats['ranks']['rating'], inline=True)
+            embed.add_field(name="Rank", value=player_stats['ranks']['rank_points'], inline=True)
             embed.add_field(name="Skill Rating", value=player_stats['stats']['rating'], inline=True)
             embed.add_field(name="Wins", value=player_stats['stats']['win_matches_cnt'], inline=True)
             embed.add_field(name="Win Rate", value='{}%'.format(round(player_stats['stats']['win_matches_cnt']/player_stats['stats']['matches_cnt']*100, 2), inline=True))
@@ -243,7 +246,7 @@ class pubg():
             data = await self.getID(player)
             if data['season'] != self.team.data['season']:
                 self.team.data['season'] = data['season']
-                print(f'New season:{self.team.data["season"]}')
+                print(f'New season: {self.team.data["season"]}')
                 self.team.save
             await asyncio.sleep(3600)
 
