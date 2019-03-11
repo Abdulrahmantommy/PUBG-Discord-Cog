@@ -35,7 +35,7 @@ class default:
     region = 'na'
 
 
-class pubg():
+class pubg(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.team = Pyson('./cogs/data/pubg')
@@ -193,7 +193,7 @@ class pubg():
             embed = discord.Embed(title=data['nickname'], url=f'https://pubg.op.gg/user/{data.get("nickname")}?server={data.get("region")}',
                                   description=f'{region}-{mode}\nGrade: **{grade}**\nAVG DMG: **{avg_dmg}**\nTier: **{tier}**', color=0x00ff00)
             embed.add_field(name="Rank", value=player_stats['ranks']['rank_points'], inline=True)
-            embed.add_field(name="Skill Rating", value=player_stats['stats']['rating'], inline=True)
+            embed.add_field(name="Rating", value=player_stats['stats']['best_rank_point'], inline=True)
             embed.add_field(name="Wins", value=player_stats['stats']['win_matches_cnt'], inline=True)
             embed.add_field(name="Win Rate", value='{}%'.format(round(player_stats['stats']['win_matches_cnt']/player_stats['stats']['matches_cnt']*100, 2), inline=True))
             embed.add_field(name='Kills', value=player_stats['stats']['kills_sum'], inline=True)
